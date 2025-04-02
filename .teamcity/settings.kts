@@ -8,6 +8,7 @@ version = "2024.12"
 project {
     buildType(Build)
     buildType(SnapshotDependentJob)
+    buildType(ParallelJob)
 }
 
 object Build : BuildType({
@@ -36,16 +37,29 @@ object Build : BuildType({
 })
 
 object SnapshotDependentJob : BuildType({
+
     name = "Snapshot Dependent Job"
 
     dependencies {
         snapshot(Build) {}
+        snapshot(ParallelJob) {}
     }
 
     steps {
         script {
             id = "dependentRunner"
             scriptContent = """echo "papa!""""
+        }
+    }
+})
+
+object ParallelJob : BuildType({
+    name = "Parallel Job"
+
+    steps {
+        script {
+            id = "parallelRunner"
+            scriptContent = """echo "brother!""""
         }
     }
 })
