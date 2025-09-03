@@ -1,0 +1,3 @@
+preview-command: python3 server.py
+forward-ports:
+  - 3000
