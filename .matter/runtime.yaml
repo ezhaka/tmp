@@ -1,4 +1,4 @@
-before-command: exit 1
+before-command: "echo kek && exit 1"
 preview-command: python3 server.py
 forward-ports:
   - 3000
